@@ -1,0 +1,19 @@
+{
+  "name": "gta-6-payout-heist-calculator",
+  "version": "1.0.0",
+  "description": "Fast, mobile-first GTA 6 Online Payout & Heist Calculator for console & PC players.",
+  "main": "js/calculator.js",
+  "scripts": {
+    "test": "node js/tests.js",
+    "start": "npx -y serve . -l 3000"
+  },
+  "keywords": [
+    "gta6",
+    "gta-online",
+    "heist-calculator",
+    "payout-splitter",
+    "gaming-utility"
+  ],
+  "author": "GTA Payout Calc Community",
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+# Robots.txt for GTA Payout Calc
+# https://gtapayoutcalc.com/
+
+User-agent: *
+Allow: /
+Allow: /data/activities.json
+Disallow: /*?*cuts=* # Avoid indexing endless permutation URLs
+
+Sitemap: https://gtapayoutcalc.com/sitemap.xml

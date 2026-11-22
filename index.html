@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>GTA 6 Online Payout &amp; Heist Calculator | GTA Payout Calc</title>
+  <meta name="description" content="Instant, mobile-first GTA 6 Online Payout &amp; Heist Splitter. Calculate fair cuts, leader vs crew takes, money per hour ($/hr), and grind time for supercars. Zero sign-up.">
+  <meta name="keywords" content="GTA 6 Online payout calculator, GTA 6 heist splitter, money per hour GTA 6, fair cut heist calculator, GTA Online grind calculator, Cayo Perico GTA 6, Vice City heist payout">
+  <meta name="author" content="GTA Payout Calc Community">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gtapayoutcalc.com/">
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gtapayoutcalc.com/">
+  <meta property="og:title" content="GTA 6 Online Payout &amp; Heist Calculator | Splitter &amp; $/Hr">
+  <meta property="og:description" content="Instant heist cut splitter and money-per-hour calculator for GTA 6 Online. Calculate takes, fair cuts, and fastest grind paths in under 5 seconds.">
+  <meta property="og:image" content="https://gtapayoutcalc.com/assets/og-image.png">
+  <meta property="og:site_name" content="GTA Payout Calc">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://gtapayoutcalc.com/">
+  <meta name="twitter:title" content="GTA 6 Online Payout &amp; Heist Calculator">
+  <meta name="twitter:description" content="Calculate heist splits, leader vs crew cuts, and $/hour for GTA 6 Online on your phone while playing.">
+  <meta name="twitter:image" content="https://gtapayoutcalc.com/assets/og-image.png">
+
+  <!-- Favicon / App Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0d14'/><text x='50%' y='65%' font-size='60' font-weight='900' fill='%2300f0ff' text-anchor='middle'>VI</text></svg>">
+  <meta name="theme-color" content="#0a0d14">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- JSON-LD Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "GTA 6 Online Payout & Heist Calculator",
+    "url": "https://gtapayoutcalc.com/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Mobile-first gaming utility for GTA 6 Online players to calculate heist cut distributions, leader takes, hourly grind profits, and target savings.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the Heist Payout Splitter calculate leader vs crew takes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator starts with the total gross bag loot, subtracts bag damage losses, and deducts fencing and support crew fees (typically 10-15%). The remaining net pot is then distributed based on the percentage cut allocated to each player. If setup reimbursement is enabled, the leader's upfront preparation fee is repaid first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is considered a fair cut split in GTA Online heists?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For 4 players, an equal split is 25% each. However, because the heist leader pays upfront setup costs and spends 45+ minutes doing solo prep missions, the traditional community standard is 40% for the leader and 20% for each crew member. For 2 players, 50/50 is common if preps were shared, or 60/40 if the host prepped solo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which GTA 6 heist gives the highest money per hour ($/hr)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Based on early community estimates and historical mechanics, solo-capable operations like the Port Gellhorn Container Depository yield the highest sustained $/hr (approx. $2.8M-$3.2M/hr) due to short setup times and zero crew deductions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you run major GTA 6 heists completely solo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, several major and mini-heists are designed to be completed solo with adjusted secondary loot bag capacities. However, multi-card security vaults require at least 2 coordinated players to open."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Goal Tracker calculate grind time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Goal Tracker takes your target purchase price, subtracts your current bank balance, and divides the remainder by the net payout of your chosen grind activity. It calculates the exact number of runs needed and multiplies by average mission duration."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main calculator</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="./" class="brand-wrapper" aria-label="GTA Payout Calc Home">
+        <div class="brand-icon" aria-hidden="true">VI</div>
+        <div class="brand-text">
+          <h1>GTA 6 <span class="brand-accent">Payout Calc</span></h1>
+          <span class="brand-sub">Heist Splitter &amp; $/Hr Utility</span>
+        </div>
+      </a>
+
+      <div class="header-badges">
+        <span class="badge badge-status" title="Estimates based on historical mechanics and community data">
+          <span class="pulse-dot"></span>
+          Data: Nov 2026 (Placeholder)
+        </span>
+        <button type="button" class="btn-report-header" data-open-modal="modal-report">
+          Report Number
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="container">
+    <!-- Tab Navigation -->
+    <nav class="tabs-nav" aria-label="Calculator Views">
+      <button type="button" class="tab-btn active" data-tab="splitter" id="tab-btn-splitter">
+        <span>💰 Heist Splitter</span>
+      </button>
+      <button type="button" class="tab-btn" data-tab="hourly" id="tab-btn-hourly">
+        <span>⏱ $/Hour Engine</span>
+      </button>
+      <button type="button" class="tab-btn" data-tab="goal" id="tab-btn-goal">
+        <span>🎯 Goal Tracker</span>
+      </button>
+      <button type="button" class="tab-btn" data-tab="cheatsheet" id="tab-btn-cheatsheet">
+        <span>📋 Cheat-Sheet</span>
+      </button>
+    </nav>
+
+    <!-- ======================================================================
+         Above-The-Fold Live Result Showcase (Mobile First)
+         Always visible on top of screen without scrolling!
+         ====================================================================== -->
+    <section class="live-summary-card" aria-live="polite" aria-atomic="true">
+      <div class="summary-header">
+        <h2 class="summary-title" id="live-title">⚡ Live Heist Split Summary</h2>
+        <div class="summary-actions">
+          <button type="button" class="btn-mini-action" id="btn-copy-result" title="Copy breakdown to clipboard">
+            📋 Copy Result
+          </button>
+          <button type="button" class="btn-mini-action" id="btn-share-link" title="Copy shareable link with current inputs">
+            🔗 Share Link
+          </button>
+        </div>
+      </div>
+
+      <div class="summary-hero-grid">
+        <div class="stat-box">
+          <div class="stat-label" id="stat-1-label">Leader Take</div>
+          <div class="stat-value highlight-cyan num-mono" id="stat-1-val">$720,000</div>
+          <div class="stat-subtext" id="stat-1-sub">40% cut</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label" id="stat-2-label">Crew Total</div>
+          <div class="stat-value highlight-cash num-mono" id="stat-2-val">$1,080,000</div>
+          <div class="stat-subtext" id="stat-2-sub">3 crew players</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label" id="stat-3-label">Net Pot</div>
+          <div class="stat-value num-mono" id="stat-3-val">$1,800,000</div>
+          <div class="stat-subtext" id="stat-3-sub">After fence fees</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label" id="stat-4-label">Deductions</div>
+          <div class="stat-value num-mono" id="stat-4-val">$200,000</div>
+          <div class="stat-subtext" id="stat-4-sub">10% fencing fee</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 1: Heist Payout Splitter
+         ====================================================================== -->
+    <section class="tool-panel active" id="tab-splitter" aria-labelledby="tab-btn-splitter">
+      <div class="panel-grid">
+        <!-- Input Card: Heist Parameters -->
+        <div class="card">
+          <h3 class="card-title">
+            <span>Heist Setup &amp; Fees</span>
+            <span class="badge" style="background:rgba(0,240,255,0.1); color:var(--cyan-neon);">Quick Select</span>
+          </h3>
+
+          <div class="form-group">
+            <label class="form-label" for="splitter-activity-select">
+              <span>Choose Heist / Activity</span>
+            </label>
+            <select class="form-select" id="splitter-activity-select">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="splitter-total-take">
+              <span>Total Bag Take (Gross Loot)</span>
+              <span class="form-label-hint">Primary + Secondary</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="splitter-total-take" class="form-input has-prefix num-mono" value="2450000" min="0" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="splitter-setup-cost">
+              <span>Leader Prep Setup Cost</span>
+              <span class="form-label-hint">Paid upfront by host</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="splitter-setup-cost" class="form-input has-prefix num-mono" value="100000" min="0" step="5000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="splitter-fencing-pct">
+              <span>Fencing Fee / Contact Cut</span>
+              <span class="form-label-hint" id="fencing-pct-label">10%</span>
+            </label>
+            <div class="slider-wrapper">
+              <input type="range" id="splitter-fencing-slider" class="form-range" min="0" max="25" value="10" step="1">
+              <div class="input-wrapper" style="width: 75px;">
+                <input type="number" id="splitter-fencing-pct" class="form-input has-suffix num-mono" value="10" min="0" max="100">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="splitter-damage-loss">
+              <span>Damage / Gunfire Loot Dropped</span>
+              <span class="form-label-hint">Cash shot out of bags</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="splitter-damage-loss" class="form-input has-prefix num-mono" value="0" min="0" step="1000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="splitter-crew-support">
+              <span>Support Crew Flat Cut (Hacker / Driver)</span>
+              <span class="form-label-hint">NPC cut</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="splitter-crew-support" class="form-input has-prefix num-mono" value="0" min="0" step="5000">
+            </div>
+          </div>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="splitter-reimburse-setup" class="checkbox-input">
+            <span>Reimburse leader's setup cost from pot before cut split</span>
+          </label>
+        </div>
+
+        <!-- Input Card: Player Cuts -->
+        <div class="card">
+          <h3 class="card-title">
+            <span>Player Cuts &amp; Payout Distribution</span>
+          </h3>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Number of Players</span>
+            </label>
+            <div class="quick-buttons">
+              <button type="button" class="btn-chip btn-player-count" data-count="1">1 (Solo)</button>
+              <button type="button" class="btn-chip btn-player-count" data-count="2">2 Players</button>
+              <button type="button" class="btn-chip btn-player-count" data-count="3">3 Players</button>
+              <button type="button" class="btn-chip btn-player-count active" data-count="4">4 Players</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Cut Presets</span>
+            </label>
+            <div class="quick-buttons">
+              <button type="button" class="btn-chip highlight-fair" id="btn-fair-split">⚖️ Fair Split (Equal %)</button>
+              <button type="button" class="btn-chip" id="btn-leader-split">👑 Leader Prep Split (40/20...)</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Player Rows Container -->
+          <div class="players-list" id="players-list-container">
+            <!-- Populated via JavaScript -->
+          </div>
+
+          <div class="cut-validation-bar valid" id="cut-validation-bar">
+            <span id="cut-validation-text">✓ Cuts sum to 100%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 2: Money Per Hour Engine
+         ====================================================================== -->
+    <section class="tool-panel" id="tab-hourly" aria-labelledby="tab-btn-hourly">
+      <div class="panel-grid">
+        <div class="card">
+          <h3 class="card-title">Custom $/Hour Calculator</h3>
+
+          <div class="form-group">
+            <label class="form-label" for="hourly-payout">
+              <span>Net Payout per Run</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="hourly-payout" class="form-input has-prefix num-mono" value="2450000" min="0" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="hourly-time">
+              <span>Total Time (Preps + Finale in Minutes)</span>
+            </label>
+            <div class="slider-wrapper">
+              <input type="range" id="hourly-time-slider" class="form-range" min="5" max="180" value="45" step="1">
+              <div class="input-wrapper" style="width: 80px;">
+                <input type="number" id="hourly-time" class="form-input has-suffix num-mono" value="45" min="1" max="600">
+                <span class="input-suffix">m</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--bg-input); padding:16px; border-radius:var(--radius-md); text-align:center; margin-top:16px;">
+            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Calculated Profitability</div>
+            <div class="num-mono" id="hourly-result-display" style="font-size:2rem; font-weight:900; color:var(--green-cash); margin-top:4px;">$3,266,667/hr</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">
+            <span>Profitability Leaderboard</span>
+            <span class="badge" style="background:rgba(0,230,118,0.15); color:var(--green-cash);">Sorted by $/Hr</span>
+          </h3>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Activity</th>
+                  <th>Difficulty</th>
+                  <th>Mode</th>
+                  <th>Net Payout</th>
+                  <th>Rate ($/hr)</th>
+                </tr>
+              </thead>
+              <tbody id="hourly-activities-tbody">
+                <!-- Dynamically loaded -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 3: Goal Tracker
+         ====================================================================== -->
+    <section class="tool-panel" id="tab-goal" aria-labelledby="tab-btn-goal">
+      <div class="panel-grid">
+        <div class="card">
+          <h3 class="card-title">Target Purchase &amp; Savings</h3>
+
+          <div class="form-group">
+            <label class="form-label" for="goal-target">
+              <span>Item / Property Price</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="goal-target" class="form-input has-prefix num-mono" value="3500000" min="0" step="50000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Quick Target Presets</span>
+            </label>
+            <div class="quick-buttons">
+              <button type="button" class="btn-chip btn-goal-preset" data-price="1800000">Bunker ($1.8M)</button>
+              <button type="button" class="btn-chip btn-goal-preset active" data-price="3500000">Supercar ($3.5M)</button>
+              <button type="button" class="btn-chip btn-goal-preset" data-price="4200000">Attack Heli ($4.2M)</button>
+              <button type="button" class="btn-chip btn-goal-preset" data-price="10000000">Penthouse ($10M)</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="goal-balance">
+              <span>Current Bank Balance</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-prefix">$</span>
+              <input type="number" id="goal-balance" class="form-input has-prefix num-mono" value="750000" min="0" step="10000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="goal-activity-select">
+              <span>Grind Method to Run</span>
+            </label>
+            <select class="form-select" id="goal-activity-select">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Grind Requirement Breakdown</h3>
+
+          <div class="progress-container">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:6px;">
+              <span>Funding Progress</span>
+              <strong id="goal-progress-percent" class="num-mono" style="color:var(--cyan-neon);">21%</strong>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="goal-progress-fill" style="width: 21%;"></div>
+            </div>
+          </div>
+
+          <div class="summary-hero-grid" style="margin-top:16px;">
+            <div class="stat-box">
+              <div class="stat-label">Runs Needed</div>
+              <div class="stat-value highlight-cyan num-mono" id="goal-runs-needed">2</div>
+              <div class="stat-subtext">Complete heists</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Grind Time</div>
+              <div class="stat-value highlight-gold num-mono" id="goal-total-time">1h 30m</div>
+              <div class="stat-subtext">Estimated playtime</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Cash Needed</div>
+              <div class="stat-value num-mono" id="goal-needed-cash">$2,750,000</div>
+              <div class="stat-subtext">To reach goal</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Surplus Bank</div>
+              <div class="stat-value highlight-cash num-mono" id="goal-surplus-cash">$150,000</div>
+              <div class="stat-subtext">Extra after buy</div>
+            </div>
+          </div>
+
+          <div class="recommendation-box" id="goal-fastest-path">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 4: Cheat-Sheet
+         ====================================================================== -->
+    <section class="tool-panel" id="tab-cheatsheet" aria-labelledby="tab-btn-cheatsheet">
+      <div class="card">
+        <h3 class="card-title">
+          <span>GTA 6 Money-Making Cheat-Sheet</span>
+          <span class="badge badge-status">Community Verified</span>
+        </h3>
+
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <input type="text" id="cs-search-input" class="form-input" placeholder="🔍 Search heists, contracts, methods...">
+          </div>
+          <div style="min-width: 150px;">
+            <select class="form-select" id="cs-category-filter">
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+          <label class="checkbox-label" style="margin:0; padding:8px 12px; background:var(--bg-input); border-radius:var(--radius-md);">
+            <input type="checkbox" id="cs-solo-checkbox" class="checkbox-input">
+            <span>Solo Only</span>
+          </label>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Activity &amp; Tips</th>
+                <th>Difficulty</th>
+                <th>Mode</th>
+                <th>Time</th>
+                <th>Base Payout</th>
+                <th>Profit ($/hr)</th>
+              </tr>
+            </thead>
+            <tbody id="cheat-sheet-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Monetisation Slot: Non-Intrusive Sponsored Slot (Strictly Below Results)
+         ====================================================================== -->
+    <aside class="ad-slot-wrapper" aria-label="Advertisement">
+      <div class="ad-label">Sponsored Partner</div>
+      <div class="ad-slot-container">
+        <span>🎮 Clean Ad Slot Reserved (728x90 Leaderboard / Responsive)</span>
+        <span style="font-size:0.68rem; margin-top:4px;">Non-intrusive gaming hardware and console accessories banner slot</span>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         SEO FAQ Section (Accordion)
+         ====================================================================== -->
+    <section class="faq-section" aria-labelledby="faq-main-heading">
+      <h2 class="faq-title" id="faq-main-heading">
+        <span>❓ Frequently Asked Questions</span>
+      </h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-question">How does the Heist Payout Splitter calculate leader vs crew takes?</summary>
+          <div class="faq-answer">
+            The tool starts with your total gross take from primary and secondary targets, subtracts bag damage losses, and deducts fencing and NPC crew cuts (typically 10-15%). The remaining net pot is divided according to each player's percentage. If "Reimburse leader's setup cost" is selected, the host is paid back their prep fee from the gross pot first.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">What is considered a "Fair Split" in GTA heists?</summary>
+          <div class="faq-answer">
+            With 4 players, an equal split is 25% each. However, since the leader pays the upfront setup fee and spends 40+ minutes completing solo preps, the established community standard is <strong>40% for the leader and 20% for each crew member</strong>. For 2 players, 50/50 is fair if preps were shared, or 60/40 if the host prepped alone.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Which GTA 6 heist gives the highest money per hour ($/hr)?</summary>
+          <div class="faq-answer">
+            Based on historical data from the Cayo Perico and Casino heists, solo-capable heists with fast infiltration routes (like the Port Gellhorn Depository) yield the highest money per hour (~$2.8M-$3.2M/hr) because there is no requirement to wait for teammates or split the primary vault loot.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Can you solo major GTA 6 heists?</summary>
+          <div class="faq-answer">
+            Yes, several activities in the calculator are labeled "Solo Ready". When playing solo, duffel bag space limits how many secondary items (gold, cash, narcotics) you can carry, but you retain 100% of the net payout without paying player cuts.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">How do I share my calculation with my heist crew?</summary>
+          <div class="faq-answer">
+            Click the "Copy Result" button at the top to copy a clean, formatted Discord breakdown with bullet points, or click "Share Link" to get a URL with all your current cuts, fees, and numbers encoded for instant loading.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Why are numbers marked as PLACEHOLDER?</summary>
+          <div class="faq-answer">
+            GTA 6 Online numbers in this tool are based on community leaks, trailer details, and historical GTA Online baselines. All values are stored in an open <code>activities.json</code> file and will be updated with day-one verified numbers upon official launch. You can click "Report Number" to suggest corrections.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">How does the Goal Tracker calculate time to afford an item?</summary>
+          <div class="faq-answer">
+            Enter your target vehicle or property price and your current bank balance. The tracker calculates remaining funds needed, rounds up to the exact number of activity runs required (using <code>Math.ceil</code>), and shows the total grind hours and leftover surplus cash.
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       Site Footer
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="disclaimer-box">
+        <strong>Disclaimer:</strong> Unofficial fan-made tool. Not affiliated with, endorsed, sponsored, or approved by Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are registered trademarks of Take-Two Interactive Software, Inc. All game names, activities, and references are used for utility and informational purposes only.
+      </div>
+
+      <div class="footer-links">
+        <button type="button" class="footer-link" data-open-modal="modal-about">About</button>
+        <button type="button" class="footer-link" data-open-modal="modal-privacy">Privacy Policy</button>
+        <button type="button" class="footer-link" data-open-modal="modal-terms">Terms of Service</button>
+        <button type="button" class="footer-link" data-open-modal="modal-contact">Contact &amp; Feedback</button>
+        <button type="button" class="footer-link" data-open-modal="modal-report">Report Wrong Number</button>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; 2026 GTA Payout Calc • Mobile-First Gaming Utilities</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       Modals (Accessible Native Dialog Elements)
+       ====================================================================== -->
+
+  <!-- Modal: About -->
+  <dialog class="modal-dialog" id="modal-about">
+    <div class="modal-header">
+      <h3>About GTA Payout Calc</h3>
+      <button type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>GTA Payout Calc is a fast, mobile-first utility built specifically for console and PC gamers who need instant answers while in lobby or prep rooms without signing up or watching slow video guides.</p>
+      <h4>Features</h4>
+      <p>• <strong>Instant Heist Splitter:</strong> Calculate host profit, crew takes, and support fees.</p>
+      <p>• <strong>Money Per Hour Engine:</strong> Find out which activity pays best for your active playtime.</p>
+      <p>• <strong>Goal Tracker:</strong> Figure out how many runs it takes to buy that dream supercar or luxury penthouse.</p>
+      <p>• <strong>Cheat-Sheet:</strong> Searchable, sortable list of payouts, setup costs, and solo compatibility.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal: Privacy Policy -->
+  <dialog class="modal-dialog" id="modal-privacy">
+    <div class="modal-header">
+      <h3>Privacy Policy</h3>
+      <button type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>Last updated: November 22, 2026</p>
+      <h4>Zero Personal Data Collection</h4>
+      <p>We respect your privacy. This tool requires zero account registration, zero email addresses, and zero gamer tag credentials. All calculations run client-side in your web browser.</p>
+      <h4>Local Storage &amp; Cookies</h4>
+      <p>We use standard browser localStorage solely to remember your UI preferences (such as cookie consent choices). No personal tracking cookies are used to profile users.</p>
+      <h4>Third-Party Advertising &amp; Hosting</h4>
+      <p>Static pages are served securely via CDN edge networks (such as Cloudflare Pages / Vercel). Third-party advertising partners may serve non-personalized banners in designated ad slots in compliance with GDPR and CCPA guidelines.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal: Terms of Service -->
+  <dialog class="modal-dialog" id="modal-terms">
+    <div class="modal-header">
+      <h3>Terms of Service</h3>
+      <button type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <h4>Informational Purpose Only</h4>
+      <p>This web application is provided free of charge as an entertainment and planning utility. Payout estimates and heist mechanics reflect community gameplay findings and may change with game updates.</p>
+      <h4>Intellectual Property</h4>
+      <p>Grand Theft Auto and related marks are trademarks of Take-Two Interactive. This website is an independent community project and makes no claim of ownership over Rockstar Games assets.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal: Contact & Feedback -->
+  <dialog class="modal-dialog" id="modal-contact">
+    <div class="modal-header">
+      <h3>Contact &amp; Community</h3>
+      <button type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>Have a question, feature request, or suggestion?</p>
+      <p style="margin-top:10px;">Reach out via email: <a href="mailto:contact@gtapayoutcalc.com" style="color:var(--cyan-neon);">contact@gtapayoutcalc.com</a></p>
+      <p style="margin-top:10px;">Join our community discussion on Reddit at <strong>r/GTA6</strong> or share the tool in your Discord crew server.</p>
+    </div>
+  </dialog>
+
+  <!-- Modal: Report Wrong Number -->
+  <dialog class="modal-dialog" id="modal-report">
+    <div class="modal-header">
+      <h3>Report Wrong Number or Data Correction</h3>
+      <button type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>Help us keep the numbers 100% accurate! Found an incorrect base payout, setup cost, or fencing fee percentage?</p>
+      <div style="margin:16px 0; padding:14px; background:var(--bg-input); border-radius:var(--radius-md);">
+        <p><strong>Option 1: Send Quick Email</strong></p>
+        <p style="font-size:0.75rem; color:var(--text-dim); margin-bottom:8px;">Opens your email app with pre-filled details.</p>
+        <a href="mailto:feedback@gtapayoutcalc.com?subject=GTA%206%20Data%20Correction&amp;body=Activity%20Name:%0AObserved%20Payout:%0AFencing%20Fee%20Percentage:%0ASource%20or%20Screenshot%20Link:" 
+           class="btn-chip active" 
+           style="display:inline-block; text-decoration:none;">
+          ✉️ Open Mail Client
+        </a>
+      </div>
+      <div style="padding:14px; background:var(--bg-input); border-radius:var(--radius-md);">
+        <p><strong>Option 2: Direct Contact</strong></p>
+        <p style="font-size:0.78rem;">Email directly to: <code>feedback@gtapayoutcalc.com</code></p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ======================================================================
+       Cookie / GDPR Banner
+       ====================================================================== -->
+  <aside class="cookie-banner" id="cookie-banner" aria-label="Cookie and Privacy Consent">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        🍪 We use minimal local storage and essential cookies to ensure calculation features and preference memory work smoothly. No personal data is stored.
+      </div>
+      <div class="cookie-actions">
+        <button type="button" class="btn-cookie btn-cookie-accept" id="btn-accept-cookies">Accept</button>
+        <button type="button" class="btn-cookie btn-cookie-decline" id="btn-decline-cookies">Essential Only</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="./js/calculator.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
