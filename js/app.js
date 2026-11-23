@@ -231,7 +231,7 @@
         state.splitter.cuts = Calculator.calculateFairSplit(state.splitter.numPlayers);
         renderPlayerCutInputs();
         calculateAndRenderSplitter();
-        showToast('Set to Even Split!');
+        showToast('Even split applied');
       });
     }
 
@@ -240,7 +240,7 @@
         state.splitter.cuts = Calculator.calculateStandardLeaderSplit(state.splitter.numPlayers);
         renderPlayerCutInputs();
         calculateAndRenderSplitter();
-        showToast('Set to Leader Prep Split!');
+        showToast('Leader split applied');
       });
     }
 
@@ -485,16 +485,16 @@
   function updateLiveSummaryHeader() {
     switch (state.activeTab) {
       case 'splitter':
-        DOM.liveTitle.textContent = '⚡ Live Heist Split Summary';
+        DOM.liveTitle.textContent = 'Live split summary';
         break;
       case 'hourly':
-        DOM.liveTitle.textContent = '⚡ Profitability & Hourly Yield';
+        DOM.liveTitle.textContent = 'Profitability & hourly yield';
         break;
       case 'goal':
-        DOM.liveTitle.textContent = '⚡ Goal Tracker Grind Path';
+        DOM.liveTitle.textContent = 'Goal grind path';
         break;
       case 'cheatsheet':
-        DOM.liveTitle.textContent = '⚡ Quick Activities Overview';
+        DOM.liveTitle.textContent = 'Activities overview';
         break;
     }
   }
@@ -594,11 +594,11 @@
     if (DOM.cutValidationBar && DOM.cutValidationText) {
       if (result.isSumValid) {
         DOM.cutValidationBar.className = 'cut-validation-bar valid';
-        DOM.cutValidationText.innerHTML = `✓ Cuts sum to 100% (${Calculator.formatCurrency(result.netPot)} net pot)`;
+        DOM.cutValidationText.innerHTML = `Cuts sum to 100% (${Calculator.formatCurrency(result.netPot)} net pot)`;
       } else {
         DOM.cutValidationBar.className = 'cut-validation-bar invalid';
         const diff = 100 - result.totalCutPct;
-        DOM.cutValidationText.innerHTML = `⚠ Cuts sum to ${result.totalCutPct}% (${diff > 0 ? diff + '% unallocated' : Math.abs(diff) + '% over'})`;
+        DOM.cutValidationText.innerHTML = `Cuts sum to ${result.totalCutPct}% (${diff > 0 ? diff + '% unallocated' : Math.abs(diff) + '% over'})`;
       }
     }
 
@@ -848,7 +848,7 @@
 
     const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}#${state.activeTab}`;
     copyToClipboard(shareUrl);
-    showToast('🔗 Shareable link copied to clipboard!');
+    showToast('Link copied to clipboard');
   }
 
   function restoreStateFromUrl() {
@@ -936,7 +936,7 @@
     }
 
     copyToClipboard(text);
-    showToast('📋 Formatted Discord/Reddit breakdown copied!');
+    showToast('Breakdown copied to clipboard');
   }
 
   function copyToClipboard(text) {

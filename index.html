@@ -10,7 +10,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://gtapayoutcalc.com/">
 
-  <!-- Open Graph / Facebook / Discord -->
+  <!-- Open Graph / Discord / Reddit Cards -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gtapayoutcalc.com/">
   <meta property="og:title" content="GTA 6 Online Payout &amp; Heist Calculator | Splitter &amp; $/Hr">
@@ -25,14 +25,14 @@
   <meta name="twitter:description" content="Calculate heist splits, leader vs crew cuts, and $/hour for GTA 6 Online on your phone while playing.">
   <meta name="twitter:image" content="https://gtapayoutcalc.com/assets/og-image.png">
 
-  <!-- Favicon / App Icons -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0d14'/><text x='50%' y='65%' font-size='60' font-weight='900' fill='%2300f0ff' text-anchor='middle'>VI</text></svg>">
-  <meta name="theme-color" content="#0a0d14">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23121722'/><text x='50%' y='65%' font-family='sans-serif' font-size='56' font-weight='600' fill='%23eef0f5' text-anchor='middle'>VI</text></svg>">
+  <meta name="theme-color" content="#0c0f17">
 
-  <!-- Main Stylesheet -->
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="./styles/main.css">
 
-  <!-- JSON-LD Structured Data: WebApplication -->
+  <!-- JSON-LD: WebApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,7 +51,7 @@
   }
   </script>
 
-  <!-- JSON-LD Structured Data: FAQPage -->
+  <!-- JSON-LD: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -111,7 +111,7 @@
         <div class="brand-icon" aria-hidden="true">VI</div>
         <div class="brand-text">
           <h1>GTA 6 <span class="brand-accent">Payout Calc</span></h1>
-          <span class="brand-sub">Heist Splitter &amp; $/Hr Utility</span>
+          <span class="brand-sub">Heist split &amp; grind utility</span>
         </div>
       </a>
 
@@ -121,7 +121,7 @@
           Data: Nov 2026 (Placeholder)
         </span>
         <button type="button" class="btn-report-header" data-open-modal="modal-report">
-          Report Number
+          Report number
         </button>
       </div>
     </div>
@@ -131,32 +131,29 @@
     <!-- Tab Navigation -->
     <nav class="tabs-nav" aria-label="Calculator Views">
       <button type="button" class="tab-btn active" data-tab="splitter" id="tab-btn-splitter">
-        <span>💰 Heist Splitter</span>
+        <span>Heist Splitter</span>
       </button>
       <button type="button" class="tab-btn" data-tab="hourly" id="tab-btn-hourly">
-        <span>⏱ $/Hour Engine</span>
+        <span>$/Hour Engine</span>
       </button>
       <button type="button" class="tab-btn" data-tab="goal" id="tab-btn-goal">
-        <span>🎯 Goal Tracker</span>
+        <span>Goal Tracker</span>
       </button>
       <button type="button" class="tab-btn" data-tab="cheatsheet" id="tab-btn-cheatsheet">
-        <span>📋 Cheat-Sheet</span>
+        <span>Cheat-Sheet</span>
       </button>
     </nav>
 
-    <!-- ======================================================================
-         Above-The-Fold Live Result Showcase (Mobile First)
-         Always visible on top of screen without scrolling!
-         ====================================================================== -->
+    <!-- Above-The-Fold Live Result Showcase (Mobile First) -->
     <section class="live-summary-card" aria-live="polite" aria-atomic="true">
       <div class="summary-header">
-        <h2 class="summary-title" id="live-title">⚡ Live Heist Split Summary</h2>
+        <h2 class="summary-title" id="live-title">Live split summary</h2>
         <div class="summary-actions">
           <button type="button" class="btn-mini-action" id="btn-copy-result" title="Copy breakdown to clipboard">
-            📋 Copy Result
+            Copy breakdown
           </button>
           <button type="button" class="btn-mini-action" id="btn-share-link" title="Copy shareable link with current inputs">
-            🔗 Share Link
+            Share link
           </button>
         </div>
       </div>
@@ -188,30 +185,25 @@
       </div>
     </section>
 
-    <!-- ======================================================================
-         TAB 1: Heist Payout Splitter
-         ====================================================================== -->
+    <!-- TAB 1: Heist Payout Splitter -->
     <section class="tool-panel active" id="tab-splitter" aria-labelledby="tab-btn-splitter">
       <div class="panel-grid">
-        <!-- Input Card: Heist Parameters -->
         <div class="card">
           <h3 class="card-title">
-            <span>Heist Setup &amp; Fees</span>
-            <span class="badge" style="background:rgba(0,240,255,0.1); color:var(--cyan-neon);">Quick Select</span>
+            <span>Heist setup &amp; fees</span>
+            <span class="badge badge-status">Quick select</span>
           </h3>
 
           <div class="form-group">
             <label class="form-label" for="splitter-activity-select">
-              <span>Choose Heist / Activity</span>
+              <span>Choose heist or activity</span>
             </label>
-            <select class="form-select" id="splitter-activity-select">
-              <!-- Dynamically populated -->
-            </select>
+            <select class="form-select" id="splitter-activity-select"></select>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="splitter-total-take">
-              <span>Total Bag Take (Gross Loot)</span>
+              <span>Total bag take (gross loot)</span>
               <span class="form-label-hint">Primary + Secondary</span>
             </label>
             <div class="input-wrapper">
@@ -222,7 +214,7 @@
 
           <div class="form-group">
             <label class="form-label" for="splitter-setup-cost">
-              <span>Leader Prep Setup Cost</span>
+              <span>Leader prep setup cost</span>
               <span class="form-label-hint">Paid upfront by host</span>
             </label>
             <div class="input-wrapper">
@@ -233,7 +225,7 @@
 
           <div class="form-group">
             <label class="form-label" for="splitter-fencing-pct">
-              <span>Fencing Fee / Contact Cut</span>
+              <span>Fencing fee or contact cut</span>
               <span class="form-label-hint" id="fencing-pct-label">10%</span>
             </label>
             <div class="slider-wrapper">
@@ -247,7 +239,7 @@
 
           <div class="form-group">
             <label class="form-label" for="splitter-damage-loss">
-              <span>Damage / Gunfire Loot Dropped</span>
+              <span>Damage or gunfire loot dropped</span>
               <span class="form-label-hint">Cash shot out of bags</span>
             </label>
             <div class="input-wrapper">
@@ -258,7 +250,7 @@
 
           <div class="form-group">
             <label class="form-label" for="splitter-crew-support">
-              <span>Support Crew Flat Cut (Hacker / Driver)</span>
+              <span>Support crew flat cut (Hacker / Driver)</span>
               <span class="form-label-hint">NPC cut</span>
             </label>
             <div class="input-wrapper">
@@ -273,15 +265,14 @@
           </label>
         </div>
 
-        <!-- Input Card: Player Cuts -->
         <div class="card">
           <h3 class="card-title">
-            <span>Player Cuts &amp; Payout Distribution</span>
+            <span>Player cuts &amp; payout distribution</span>
           </h3>
 
           <div class="form-group">
             <label class="form-label">
-              <span>Number of Players</span>
+              <span>Number of players</span>
             </label>
             <div class="quick-buttons">
               <button type="button" class="btn-chip btn-player-count" data-count="1">1 (Solo)</button>
@@ -293,37 +284,32 @@
 
           <div class="form-group">
             <label class="form-label">
-              <span>Cut Presets</span>
+              <span>Cut presets</span>
             </label>
             <div class="quick-buttons">
-              <button type="button" class="btn-chip highlight-fair" id="btn-fair-split">⚖️ Fair Split (Equal %)</button>
-              <button type="button" class="btn-chip" id="btn-leader-split">👑 Leader Prep Split (40/20...)</button>
+              <button type="button" class="btn-chip highlight-fair" id="btn-fair-split">Even split (25%)</button>
+              <button type="button" class="btn-chip" id="btn-leader-split">Leader split (40/20)</button>
             </div>
           </div>
 
-          <!-- Dynamic Player Rows Container -->
-          <div class="players-list" id="players-list-container">
-            <!-- Populated via JavaScript -->
-          </div>
+          <div class="players-list" id="players-list-container"></div>
 
           <div class="cut-validation-bar valid" id="cut-validation-bar">
-            <span id="cut-validation-text">✓ Cuts sum to 100%</span>
+            <span id="cut-validation-text">Cuts sum to 100%</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         TAB 2: Money Per Hour Engine
-         ====================================================================== -->
+    <!-- TAB 2: Money Per Hour Engine -->
     <section class="tool-panel" id="tab-hourly" aria-labelledby="tab-btn-hourly">
       <div class="panel-grid">
         <div class="card">
-          <h3 class="card-title">Custom $/Hour Calculator</h3>
+          <h3 class="card-title">Custom $/hour calculator</h3>
 
           <div class="form-group">
             <label class="form-label" for="hourly-payout">
-              <span>Net Payout per Run</span>
+              <span>Net payout per run</span>
             </label>
             <div class="input-wrapper">
               <span class="input-prefix">$</span>
@@ -333,7 +319,7 @@
 
           <div class="form-group">
             <label class="form-label" for="hourly-time">
-              <span>Total Time (Preps + Finale in Minutes)</span>
+              <span>Total time (preps + finale in minutes)</span>
             </label>
             <div class="slider-wrapper">
               <input type="range" id="hourly-time-slider" class="form-range" min="5" max="180" value="45" step="1">
@@ -344,16 +330,16 @@
             </div>
           </div>
 
-          <div style="background:var(--bg-input); padding:16px; border-radius:var(--radius-md); text-align:center; margin-top:16px;">
-            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Calculated Profitability</div>
-            <div class="num-mono" id="hourly-result-display" style="font-size:2rem; font-weight:900; color:var(--green-cash); margin-top:4px;">$3,266,667/hr</div>
+          <div style="background:var(--bg-surface); border:1px solid var(--border-hairline); padding:16px; border-radius:var(--radius-md); text-align:center; margin-top:16px;">
+            <div style="font-size:0.74rem; color:var(--text-muted); font-weight:400;">Calculated profitability</div>
+            <div class="num-mono" id="hourly-result-display" style="font-size:1.8rem; font-weight:500; color:var(--color-cash); margin-top:4px;">$3,266,667/hr</div>
           </div>
         </div>
 
         <div class="card">
           <h3 class="card-title">
-            <span>Profitability Leaderboard</span>
-            <span class="badge" style="background:rgba(0,230,118,0.15); color:var(--green-cash);">Sorted by $/Hr</span>
+            <span>Profitability leaderboard</span>
+            <span class="badge badge-status">Sorted by $/hr</span>
           </h3>
 
           <div class="table-responsive">
@@ -367,26 +353,22 @@
                   <th>Rate ($/hr)</th>
                 </tr>
               </thead>
-              <tbody id="hourly-activities-tbody">
-                <!-- Dynamically loaded -->
-              </tbody>
+              <tbody id="hourly-activities-tbody"></tbody>
             </table>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         TAB 3: Goal Tracker
-         ====================================================================== -->
+    <!-- TAB 3: Goal Tracker -->
     <section class="tool-panel" id="tab-goal" aria-labelledby="tab-btn-goal">
       <div class="panel-grid">
         <div class="card">
-          <h3 class="card-title">Target Purchase &amp; Savings</h3>
+          <h3 class="card-title">Target purchase &amp; savings</h3>
 
           <div class="form-group">
             <label class="form-label" for="goal-target">
-              <span>Item / Property Price</span>
+              <span>Item or property price</span>
             </label>
             <div class="input-wrapper">
               <span class="input-prefix">$</span>
@@ -396,7 +378,7 @@
 
           <div class="form-group">
             <label class="form-label">
-              <span>Quick Target Presets</span>
+              <span>Quick target presets</span>
             </label>
             <div class="quick-buttons">
               <button type="button" class="btn-chip btn-goal-preset" data-price="1800000">Bunker ($1.8M)</button>
@@ -408,7 +390,7 @@
 
           <div class="form-group">
             <label class="form-label" for="goal-balance">
-              <span>Current Bank Balance</span>
+              <span>Current bank balance</span>
             </label>
             <div class="input-wrapper">
               <span class="input-prefix">$</span>
@@ -418,21 +400,19 @@
 
           <div class="form-group">
             <label class="form-label" for="goal-activity-select">
-              <span>Grind Method to Run</span>
+              <span>Grind method to run</span>
             </label>
-            <select class="form-select" id="goal-activity-select">
-              <!-- Dynamically populated -->
-            </select>
+            <select class="form-select" id="goal-activity-select"></select>
           </div>
         </div>
 
         <div class="card">
-          <h3 class="card-title">Grind Requirement Breakdown</h3>
+          <h3 class="card-title">Grind requirement breakdown</h3>
 
           <div class="progress-container">
             <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:6px;">
-              <span>Funding Progress</span>
-              <strong id="goal-progress-percent" class="num-mono" style="color:var(--cyan-neon);">21%</strong>
+              <span>Funding progress</span>
+              <strong id="goal-progress-percent" class="num-mono" style="color:var(--accent);">21%</strong>
             </div>
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" id="goal-progress-fill" style="width: 21%;"></div>
@@ -441,56 +421,52 @@
 
           <div class="summary-hero-grid" style="margin-top:16px;">
             <div class="stat-box">
-              <div class="stat-label">Runs Needed</div>
+              <div class="stat-label">Runs needed</div>
               <div class="stat-value highlight-cyan num-mono" id="goal-runs-needed">2</div>
               <div class="stat-subtext">Complete heists</div>
             </div>
             <div class="stat-box">
-              <div class="stat-label">Grind Time</div>
+              <div class="stat-label">Grind time</div>
               <div class="stat-value highlight-gold num-mono" id="goal-total-time">1h 30m</div>
               <div class="stat-subtext">Estimated playtime</div>
             </div>
             <div class="stat-box">
-              <div class="stat-label">Cash Needed</div>
+              <div class="stat-label">Cash needed</div>
               <div class="stat-value num-mono" id="goal-needed-cash">$2,750,000</div>
               <div class="stat-subtext">To reach goal</div>
             </div>
             <div class="stat-box">
-              <div class="stat-label">Surplus Bank</div>
+              <div class="stat-label">Surplus bank</div>
               <div class="stat-value highlight-cash num-mono" id="goal-surplus-cash">$150,000</div>
               <div class="stat-subtext">Extra after buy</div>
             </div>
           </div>
 
-          <div class="recommendation-box" id="goal-fastest-path">
-            <!-- Dynamically populated -->
-          </div>
+          <div class="recommendation-box" id="goal-fastest-path"></div>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         TAB 4: Cheat-Sheet
-         ====================================================================== -->
+    <!-- TAB 4: Cheat-Sheet -->
     <section class="tool-panel" id="tab-cheatsheet" aria-labelledby="tab-btn-cheatsheet">
       <div class="card">
         <h3 class="card-title">
-          <span>GTA 6 Money-Making Cheat-Sheet</span>
-          <span class="badge badge-status">Community Verified</span>
+          <span>GTA 6 money-making cheat-sheet</span>
+          <span class="badge badge-status">Community verified</span>
         </h3>
 
         <div class="filter-bar">
           <div class="search-input-wrapper">
-            <input type="text" id="cs-search-input" class="form-input" placeholder="🔍 Search heists, contracts, methods...">
+            <input type="text" id="cs-search-input" class="form-input" placeholder="Search heists, contracts, methods...">
           </div>
           <div style="min-width: 150px;">
             <select class="form-select" id="cs-category-filter">
-              <option value="all">All Categories</option>
+              <option value="all">All categories</option>
             </select>
           </div>
-          <label class="checkbox-label" style="margin:0; padding:8px 12px; background:var(--bg-input); border-radius:var(--radius-md);">
+          <label class="checkbox-label" style="margin:0; padding:8px 12px; background:var(--bg-surface); border:1px solid var(--border-hairline); border-radius:var(--radius-md);">
             <input type="checkbox" id="cs-solo-checkbox" class="checkbox-input">
-            <span>Solo Only</span>
+            <span>Solo only</span>
           </label>
         </div>
 
@@ -498,39 +474,33 @@
           <table class="data-table">
             <thead>
               <tr>
-                <th>Activity &amp; Tips</th>
+                <th>Activity &amp; tips</th>
                 <th>Difficulty</th>
                 <th>Mode</th>
                 <th>Time</th>
-                <th>Base Payout</th>
+                <th>Base payout</th>
                 <th>Profit ($/hr)</th>
               </tr>
             </thead>
-            <tbody id="cheat-sheet-tbody">
-              <!-- Dynamically populated -->
-            </tbody>
+            <tbody id="cheat-sheet-tbody"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- ======================================================================
-         Monetisation Slot: Non-Intrusive Sponsored Slot (Strictly Below Results)
-         ====================================================================== -->
+    <!-- Monetisation Slot (Below Results) -->
     <aside class="ad-slot-wrapper" aria-label="Advertisement">
-      <div class="ad-label">Sponsored Partner</div>
+      <div class="ad-label">Advertisement</div>
       <div class="ad-slot-container">
-        <span>🎮 Clean Ad Slot Reserved (728x90 Leaderboard / Responsive)</span>
-        <span style="font-size:0.68rem; margin-top:4px;">Non-intrusive gaming hardware and console accessories banner slot</span>
+        <span>Sponsor slot reserved (728x90 responsive)</span>
+        <span style="font-size:0.68rem; margin-top:2px;">Gaming accessories &amp; hardware partner placement</span>
       </div>
     </aside>
 
-    <!-- ======================================================================
-         SEO FAQ Section (Accordion)
-         ====================================================================== -->
+    <!-- FAQ Section -->
     <section class="faq-section" aria-labelledby="faq-main-heading">
       <h2 class="faq-title" id="faq-main-heading">
-        <span>❓ Frequently Asked Questions</span>
+        <span>Frequently asked questions</span>
       </h2>
 
       <div class="faq-list">
@@ -565,14 +535,14 @@
         <details class="faq-item">
           <summary class="faq-question">How do I share my calculation with my heist crew?</summary>
           <div class="faq-answer">
-            Click the "Copy Result" button at the top to copy a clean, formatted Discord breakdown with bullet points, or click "Share Link" to get a URL with all your current cuts, fees, and numbers encoded for instant loading.
+            Click the "Copy breakdown" button at the top to copy a clean, formatted Discord breakdown with bullet points, or click "Share link" to get a URL with all your current cuts, fees, and numbers encoded for instant loading.
           </div>
         </details>
 
         <details class="faq-item">
           <summary class="faq-question">Why are numbers marked as PLACEHOLDER?</summary>
           <div class="faq-answer">
-            GTA 6 Online numbers in this tool are based on community leaks, trailer details, and historical GTA Online baselines. All values are stored in an open <code>activities.json</code> file and will be updated with day-one verified numbers upon official launch. You can click "Report Number" to suggest corrections.
+            GTA 6 Online numbers in this tool are based on community leaks, trailer details, and historical GTA Online baselines. All values are stored in an open <code>activities.json</code> file and will be updated with day-one verified numbers upon official launch. You can click "Report number" to suggest corrections.
           </div>
         </details>
 
@@ -586,9 +556,7 @@
     </section>
   </main>
 
-  <!-- ======================================================================
-       Site Footer
-       ====================================================================== -->
+  <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="disclaimer-box">
@@ -600,20 +568,16 @@
         <button type="button" class="footer-link" data-open-modal="modal-privacy">Privacy Policy</button>
         <button type="button" class="footer-link" data-open-modal="modal-terms">Terms of Service</button>
         <button type="button" class="footer-link" data-open-modal="modal-contact">Contact &amp; Feedback</button>
-        <button type="button" class="footer-link" data-open-modal="modal-report">Report Wrong Number</button>
+        <button type="button" class="footer-link" data-open-modal="modal-report">Report wrong number</button>
       </div>
 
       <div class="footer-copy">
-        <p>&copy; 2026 GTA Payout Calc • Mobile-First Gaming Utilities</p>
+        <p>&copy; 2026 GTA Payout Calc • Mobile gaming utilities</p>
       </div>
     </div>
   </footer>
 
-  <!-- ======================================================================
-       Modals (Accessible Native Dialog Elements)
-       ====================================================================== -->
-
-  <!-- Modal: About -->
+  <!-- Modals -->
   <dialog class="modal-dialog" id="modal-about">
     <div class="modal-header">
       <h3>About GTA Payout Calc</h3>
@@ -629,7 +593,6 @@
     </div>
   </dialog>
 
-  <!-- Modal: Privacy Policy -->
   <dialog class="modal-dialog" id="modal-privacy">
     <div class="modal-header">
       <h3>Privacy Policy</h3>
@@ -646,7 +609,6 @@
     </div>
   </dialog>
 
-  <!-- Modal: Terms of Service -->
   <dialog class="modal-dialog" id="modal-terms">
     <div class="modal-header">
       <h3>Terms of Service</h3>
@@ -660,7 +622,6 @@
     </div>
   </dialog>
 
-  <!-- Modal: Contact & Feedback -->
   <dialog class="modal-dialog" id="modal-contact">
     <div class="modal-header">
       <h3>Contact &amp; Community</h3>
@@ -668,51 +629,48 @@
     </div>
     <div class="modal-body">
       <p>Have a question, feature request, or suggestion?</p>
-      <p style="margin-top:10px;">Reach out via email: <a href="mailto:contact@gtapayoutcalc.com" style="color:var(--cyan-neon);">contact@gtapayoutcalc.com</a></p>
+      <p style="margin-top:10px;">Reach out via email: <a href="mailto:contact@gtapayoutcalc.com" style="color:var(--accent);">contact@gtapayoutcalc.com</a></p>
       <p style="margin-top:10px;">Join our community discussion on Reddit at <strong>r/GTA6</strong> or share the tool in your Discord crew server.</p>
     </div>
   </dialog>
 
-  <!-- Modal: Report Wrong Number -->
   <dialog class="modal-dialog" id="modal-report">
     <div class="modal-header">
-      <h3>Report Wrong Number or Data Correction</h3>
+      <h3>Report data correction</h3>
       <button type="button" class="btn-close-modal" aria-label="Close dialog">&times;</button>
     </div>
     <div class="modal-body">
-      <p>Help us keep the numbers 100% accurate! Found an incorrect base payout, setup cost, or fencing fee percentage?</p>
-      <div style="margin:16px 0; padding:14px; background:var(--bg-input); border-radius:var(--radius-md);">
-        <p><strong>Option 1: Send Quick Email</strong></p>
-        <p style="font-size:0.75rem; color:var(--text-dim); margin-bottom:8px;">Opens your email app with pre-filled details.</p>
+      <p>Help us keep the numbers accurate. Found an incorrect base payout, setup cost, or fencing fee percentage?</p>
+      <div style="margin:16px 0; padding:14px; background:var(--bg-surface); border:1px solid var(--border-hairline); border-radius:var(--radius-md);">
+        <p><strong>Option 1: Send quick email</strong></p>
+        <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">Opens your email app with pre-filled details.</p>
         <a href="mailto:feedback@gtapayoutcalc.com?subject=GTA%206%20Data%20Correction&amp;body=Activity%20Name:%0AObserved%20Payout:%0AFencing%20Fee%20Percentage:%0ASource%20or%20Screenshot%20Link:" 
            class="btn-chip active" 
            style="display:inline-block; text-decoration:none;">
-          ✉️ Open Mail Client
+          Open email client
         </a>
       </div>
-      <div style="padding:14px; background:var(--bg-input); border-radius:var(--radius-md);">
-        <p><strong>Option 2: Direct Contact</strong></p>
+      <div style="padding:14px; background:var(--bg-surface); border:1px solid var(--border-hairline); border-radius:var(--radius-md);">
+        <p><strong>Option 2: Direct contact</strong></p>
         <p style="font-size:0.78rem;">Email directly to: <code>feedback@gtapayoutcalc.com</code></p>
       </div>
     </div>
   </dialog>
 
-  <!-- ======================================================================
-       Cookie / GDPR Banner
-       ====================================================================== -->
+  <!-- Cookie Banner -->
   <aside class="cookie-banner" id="cookie-banner" aria-label="Cookie and Privacy Consent">
     <div class="cookie-content">
       <div class="cookie-text">
-        🍪 We use minimal local storage and essential cookies to ensure calculation features and preference memory work smoothly. No personal data is stored.
+        We use minimal local storage and essential cookies to ensure calculation features and preference memory work smoothly. No personal data is stored.
       </div>
       <div class="cookie-actions">
         <button type="button" class="btn-cookie btn-cookie-accept" id="btn-accept-cookies">Accept</button>
-        <button type="button" class="btn-cookie btn-cookie-decline" id="btn-decline-cookies">Essential Only</button>
+        <button type="button" class="btn-cookie btn-cookie-decline" id="btn-decline-cookies">Essential only</button>
       </div>
     </div>
   </aside>
 
-  <!-- Toast Notification Container -->
+  <!-- Toast Container -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
   <!-- Scripts -->
